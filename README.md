@@ -1,95 +1,95 @@
 # C++ Workshop Handwritten Digit Recognition Neural Network in C++
 ---
-
-## Overview
-
-This project is part of **The Hebrew University of Jerusalem**’s course on **C++ Programming Workshops (Course 67312)**. It involves developing a neural network in C++ for recognizing handwritten digits (0-9) using the theoretical foundations of **Artificial Neural Networks (ANNs)** and practical implementation techniques in C++. The project emphasizes understanding **classes**, **operator overloading**, **references**, and the **Rule of Three** in C++.
-
-## Project Goals
-
-1. **Build a Neural Network**:
-   - Recognize digits written in grayscale images of size 28x28 pixels.
-   - Use a fully connected neural network with the following architecture:
-     - 4 layers with **ReLU** and **Softmax** activation functions.
-     - Weight matrices and bias vectors for each layer.
-
-2. **Apply C++ Concepts**:
-   - Implement core matrix operations (addition, multiplication, transpose, etc.).
-   - Overload operators for matrix operations to simplify code readability.
-   - Manage memory efficiently using C++’s Rule of Three.
-
-3. **Achieve High Accuracy**:
-   - Aim for ~96% accuracy on digit recognition tasks.
-   - Handle numerical precision issues for consistent performance.
+This project focuses on the implementation of a neural network to recognize handwritten digits (0-9) based on their grayscale images. The network is implemented using **C++**, without relying on external machine learning libraries, highlighting foundational programming principles in neural networks, numerical computations, and object-oriented design.
 
 ---
 
-## Features
+### **Project Overview**
 
-### Neural Network Architecture
-- **Input Layer**: Vectorized grayscale images (28x28 → 784x1).
-- **Hidden Layers**:
-  1. Layer 1: 784 → 128 neurons, ReLU activation.
-  2. Layer 2: 128 → 64 neurons, ReLU activation.
-  3. Layer 3: 64 → 20 neurons, ReLU activation.
-- **Output Layer**: 20 → 10 neurons, Softmax activation.
-  
-### Matrix Class
-- Implements a versatile `Matrix` class with:
-  - Construction: default, parameterized, copy constructor.
-  - Arithmetic operators: `+`, `*` (scalar/matrix), `+=`.
-  - Methods: `transpose()`, `vectorize()`, `norm()`, `dot()`.
-  - Indexing: `()` for 2D access, `[]` for flat memory mapping.
-  - Input/Output: Stream operators (`<<`, `>>`) for formatted I/O.
+1. **Objective**:
+   - Build a neural network capable of identifying digits from grayscale images with high accuracy (~96%).
+   - The network consists of multiple layers and incorporates the "Rule of Three" for object handling.
 
-### Program Flow
-1. Load image data and network weights from binary files.
-2. Process the image through the neural network.
-3. Output the predicted digit and its confidence level.
+2. **Core Features**:
+   - **Matrix Operations**: Efficiently handle numerical computations for neural networks.
+   - **Activation Functions**: Support for `ReLU` and `Softmax` for activation layers.
+   - **Forward Propagation**: Implementation of fully connected layers to compute outputs.
+   - **C++ Standards**: STL features are not used, ensuring custom implementation of containers and algorithms.
 
 ---
 
-## Example Usage
+### **Project Components**
 
-### Running the Program
-To execute the program, provide the paths to weight and bias files followed by the image file:
+#### **Matrix Class**
+- Represents a two-dimensional matrix for handling weights, biases, and intermediate computations in the neural network.
+- **Features**:
+  - Matrix arithmetic: Addition, scalar multiplication, and matrix multiplication.
+  - Transpose and vectorize functionality for matrix transformations.
+  - Overloaded operators: `+`, `*`, `()`, `[]`, and stream operators for input/output.
 
-```bash
-$ ./mlpnetwork w1 w2 w3 w4 b1 b2 b3 b4
-```
+#### **Activation Class**
+- Defines activation layers with two types: `ReLU` and `Softmax`.
+- Applies activation functions element-wise or across vectors as needed.
 
-The program outputs the detected digit and confidence. Example interaction:
-```
-Input Image: ./digit.png
-Detected Digit: 7
-Confidence: 90%
-```
+#### **Dense Class**
+- Represents a single layer in the neural network.
+- Encapsulates the weights, biases, and activation function for the layer.
+- Performs forward propagation for a single layer.
 
-### Visualization
-The program includes functionality to visualize images represented as matrices. Each pixel’s brightness is shown as either `**` (dark) or whitespace (light).
-
----
-
-## Installation and Requirements
-
-### Prerequisites
-- C++17 or later.
-- Standard libraries (no use of STL).
-- Development environment capable of compiling and running C++ code.
-
-### Compilation
-Compile the project using `g++`:
-```bash
-$ g++ -std=c++17 -o mlpnetwork main.cpp matrix.cpp
-```
+#### **MlpNetwork Class**
+- Manages the structure of the neural network, connecting all layers.
+- Implements the forward pass of the entire network.
+- Outputs the predicted digit alongside the probability distribution.
 
 ---
 
-## Notes
+### **Implementation Details**
 
-1. The neural network implementation simplifies many theoretical aspects to focus on practical programming skills.
-2. The project strictly avoids the use of STL containers like `std::vector`, relying instead on manual memory management.
-3. Expected inaccuracies may occur due to numerical precision or inherent network limitations.
+1. **Layer Structure**:
+   - Input Layer: Processes 28x28 grayscale images, flattened into a vector of size 784.
+   - Four Hidden Layers:
+     - Layer 1: 784 -> 128 neurons (ReLU)
+     - Layer 2: 128 -> 64 neurons (ReLU)
+     - Layer 3: 64 -> 20 neurons (ReLU)
+     - Layer 4: 20 -> 10 neurons (Softmax)
+
+2. **Pipeline**:
+   - The neural network computes predictions using matrix operations and activation functions.
+   - Input images are preprocessed into grayscale vectors.
+   - Each layer transforms its input using its weights, biases, and activation function.
+
+3. **Error Handling**:
+   - Implements robust error handling, providing informative error messages and ensuring program stability.
+
+---
+
+### **How to Run**
+1. Compile the code using the provided `Makefile`:
+   ```bash
+   make mlpnetwork
+   ```
+2. Execute the neural network:
+   ```bash
+   ./mlpnetwork w1 w2 w3 w4 b1 b2 b3 b4
+   ```
+   Replace `w1` to `b4` with paths to the weight and bias files for each layer.
+3. Feed images to the network by providing the image file path as input when prompted.
+
+---
+
+### **Key Concepts**
+- **Rule of Three**: Ensures proper management of resources through constructors, destructors, and copy operators.
+- **Numerical Stability**: Matrix computations are designed to minimize numerical errors.
+- **Streamlined Design**: Clear separation of layers, activation functions, and matrix computations promotes modularity.
+
+---
+
+### **Future Improvements**
+- Extend to support variable layer counts and sizes during runtime.
+- Optimize computational efficiency for larger datasets.
+- Introduce training capabilities for the neural network.
+
+This project demonstrates the practical application of **C++** in implementing a neural network, providing a solid foundation for understanding the inner workings of machine learning models.
 
 ---
 
