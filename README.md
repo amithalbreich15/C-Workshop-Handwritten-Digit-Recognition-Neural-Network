@@ -1,4 +1,4 @@
-# C-Workshop-Handwritten-Digit-Recognition-Neural-Network
+# C++ Workshop Handwritten Digit Recognition Neural Network in C++
 ---
 
 ## Overview
