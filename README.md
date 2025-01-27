@@ -1,4 +1,4 @@
-# C++ Workshop Handwritten Digit Recognition Neural Network in C++
+# C++ Workshop Handwritten Digit Recognition Neural Network
 ---
 This project focuses on the implementation of a neural network to recognize handwritten digits (0-9) based on their grayscale images. The network is implemented using **C++**, without relying on external machine learning libraries, highlighting foundational programming principles in neural networks, numerical computations, and object-oriented design.
 
@@ -88,9 +88,7 @@ This project focuses on the implementation of a neural network to recognize hand
 - Extend to support variable layer counts and sizes during runtime.
 - Optimize computational efficiency for larger datasets.
 - Introduce training capabilities for the neural network.
-
-This project demonstrates the practical application of **C++** in implementing a neural network, providing a solid foundation for understanding the inner workings of machine learning models.
-
+- 
 ---
 
 ## References
